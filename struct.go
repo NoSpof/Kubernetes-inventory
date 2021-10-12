@@ -14,8 +14,6 @@ type resourcesquotas struct {
 	RateCpu         string
 	RateMemory      string
 }
-type rqsArray []resourcesquotas
-
 type node struct {
 	Name             string
 	UnSchedulable    bool
@@ -28,12 +26,21 @@ type node struct {
 	Arch             string
 }
 
-type nodes []node
-
 type image struct {
 	Names    string
 	NodeName string
 	Size     int64
 }
 
-type images []image
+type pvc struct {
+	Name      string
+	Size      int64
+	Namespace string
+}
+type namespace struct {
+	Name        string
+	DeployCount int
+	PodCount    int
+	SecretCount int
+	ConfigMap   int
+}
