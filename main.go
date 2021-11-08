@@ -17,6 +17,7 @@ func main() {
 
 	}
 	nodesList := getNodes(clientKate)
-	imageList := getImages(clientKate)
+	//imageList := getImages(clientKate)
+	var imageList []image
 	generateReport(clusterCapacity, rqsArray, nodesList, imageList, pvcList, nsList)
 }

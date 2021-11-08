@@ -10,12 +10,14 @@ import (
 
 func GetNS(clientKate kubernetes.Clientset) []string {
 	// Get Namespace
-
+	excludeNs := []string{"kube-system"}
 	ns, err := clientKate.CoreV1().Namespaces().List(context.TODO(), metav1.ListOptions{})
 	common.ExitIfError(err)
 	var namespaces []string
 	for _, namespace := range ns.Items {
-		namespaces = append(namespaces, namespace.GetName())
+		if !common.InArray(namespace.GetName(), excludeNs) {
+			namespaces = append(namespaces, namespace.GetName())
+		}
 	}
 	return namespaces
 }
